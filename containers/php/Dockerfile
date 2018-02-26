@@ -1,6 +1,6 @@
 FROM php:7.1.1-fpm
 
-COPY ./data/new-adpoke-src /var/www/html
+COPY ./data/site /var/www/html
 RUN chmod 777 /var/www/html/fuel/app/logs
 
 RUN docker-php-ext-install pdo pdo_mysql
