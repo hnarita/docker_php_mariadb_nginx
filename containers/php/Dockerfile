@@ -1,14 +1,14 @@
 FROM php:7.1.1-fpm
 
 COPY ./data/site /var/www/html
+COPY ./web/php.ini /usr/local/etc/php/
 RUN chmod 777 /var/www/html/fuel/app/logs
 
 RUN docker-php-ext-install pdo pdo_mysql
 
 RUN apt-get update \
-  && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libmcrypt-dev \
-  && docker-php-ext-install pdo_mysql mysqli mbstring gd iconv mcrypt
-RUN apt-get install -y git unzip
+  && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libmcrypt-dev zlib1g-dev git unzip \
+  && docker-php-ext-install pdo_mysql mysqli mbstring gd iconv mcrypt zip
 
 RUN apt-get install libldap2-dev -y && \
     rm -rf /var/lib/apt/lists/* && \
